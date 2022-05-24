@@ -1,5 +1,5 @@
 # easy-sports-test
-my end formation project 
+End formation project 
 
 This project carried out by Olivier Lartillot, Maxime LeGoff and Stéphane Hucher. 
 
