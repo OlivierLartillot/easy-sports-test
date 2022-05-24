@@ -1,0 +1,416 @@
+body {
+
+    min-height: 100vh;
+    background-color:rgb(245, 245, 245);
+}
+
+.bg-header {
+    background-size: cover;
+}
+
+.form{
+    background-color: #3f9e55;
+}
+
+.navbar-nav > li{
+    padding-left:60px;
+    padding-right:60px;
+}
+
+.title{
+    font-family: 'Graduate', cursive;
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+.title-page{
+    margin-top: 3rem;
+    margin-bottom:2rem;
+    font-family: 'Graduate', cursive;
+}
+
+/* fait passer la navbar au dessus du texte */
+.navbar {
+    z-index: 9999;
+}
+
+/* Image page d'accueil*/
+.bg-image{
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* div de présentation sur la home */
+.bg-opacity {
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.3); 
+    color: #f1f1f1; /* Grey text */
+    /* width: 90%; */ /* Full width */
+    padding: 15px; /* Some padding */
+    z-index: 0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+/******Page home_player******/
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 8px 8px 5px rgb(80, 80, 80);
+}
+
+.btntest{
+    border:2px solid rgb(80,80,80); 
+    text-align: center;
+    text-decoration: none;
+}
+
+.btnpassword{
+    text-align: center;
+    text-decoration: none;
+    border:2px solid rgb(80,80,80);
+    background-color: #7aaf65;
+    line-height: 3rem;
+    border-radius: 10px;
+    color:#fff;
+}
+
+.btn-info > a{
+    color:red;
+}
+
+.buttoncard{
+    box-shadow: none;
+    background-color:rgb(245, 245, 245);
+}
+
+ .row{
+     justify-content: space-between;
+}
+
+.btn-1 {
+    line-height: 3.5rem;
+    border-radius: 10px;
+    padding:0px;
+    background-color: #3f9e55;
+    color:#fff
+}
+
+.btn-1:hover{
+    background: transparent;
+    color: #000;
+}
+
+.btn-1 span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-1:before {
+    height: 0%;
+    width: 2px;
+}
+
+.btn-1:after {
+    width: 0%;
+    height: 5px;
+}
+
+.btn-1:hover:before {
+    height: 100%;
+}
+
+.btn-1:hover:after {
+    width: 100%;
+}
+
+.btn-1 span:before,
+.btn-1 span:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    background: #1e8b35;
+    transition: all 0.3s ease;
+}
+
+/*rising line thickness*/
+.btn-1 span:before {
+    width: 5px;
+    height: 0%;
+}
+/*bottom line thickness*/
+.btn-1 span:after {
+    width: 0%;
+    height: 5px;
+}
+/*lenght of the rising line*/
+.btn-1 span:hover:before {
+    height: 100%;
+}
+/*lenght of the bottom line*/
+.btn-1 span:hover:after {
+    width: 100%;
+}
+
+  /****End Page home_player****/
+
+
+.container_team{
+    border-radius: 20px;
+    border:transparent;
+    margin: 4rem auto;
+    padding:2rem;
+    display:flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px 5px rgb(34,139,34);
+    background-color:rgba(15, 153, 86, 0.05);
+    position:relative;
+}
+
+.card-body{
+    background-color:white;
+}
+
+.team_name{
+    width:100%;
+    text-align: center;
+    margin:1.5rem 0;
+    font-family: 'Graduate', cursive;
+}
+
+.title_page{
+    font-family: 'Graduate', cursive;
+    margin:2rem 0;
+}
+
+.player_card{
+    margin:1em;
+}
+
+.player_card_image {
+    max-height: 100px;
+}
+
+.bg-header {
+    background-image: linear-gradient(to right, #1e8b35, #3f9e55, #529c67, #55a36f, #67a580);
+}
+
+
+.active {
+    border-bottom: 2px black solid;
+    background-color: transparent;
+    border-bottom:2px white solid;
+}
+
+.c-details span {
+    font-weight: 300;
+    font-size: 13px
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 39px
+}
+
+.badge span {
+    background-color: #fffbec;
+    width: 60px;
+    height: 25px;
+ 
+    border-radius: 5px;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:1em;
+    padding: 1em; 
+    /* font-size: ; */
+}
+
+.progress {
+    height: 10px;
+    border-radius: 10px
+}
+
+.resultblock{
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.resultblock:hover {
+    transform: scale(1.05);
+}
+
+.progress div {
+    background-color: red
+}
+
+.text1 {
+    font-size: 14px;
+    font-weight: 600
+
+}
+
+.text2 {
+    color: #a5aec0
+}
+
+@media screen and (max-width:767px)
+{
+   
+    /* img{
+        display:none;
+    } */
+}
+
+/*breakpoint to improve the 2nd row's layout*/
+@media screen and (min-width:992px) {
+    .row2{
+      justify-content: left;
+    }
+
+    .profilcard{
+       margin-left: 2em;
+    }
+  }
+
+
+
+  /********************* Mise en place de la vignette de test pages Tests **********************/
+
+/*! row gutter vignette */
+/*to avoid the offset between the background of the card and the image*/
+.row-vignette{
+    --bs-gutter-x : 0px;  
+}
+
+.vignette-card-dimension {
+    width: 20rem;
+    height: 14rem;
+
+}
+
+.vignette-tests {
+    position: relative;
+    text-align: center;
+}
+
+.vignette-tests:hover {
+    border: 6px #3f9e55 solid;
+    border-radius: 12px; 
+    z-index: 9999;      
+}
+
+.image-tests-common {
+    position: absolute; 
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    color: #f1f1f1; 
+    width: 100%; 
+    padding: 6px;
+    left:0;
+}
+
+.image-tests-header{
+    top: 0;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.image-tests-footer{
+    bottom: -8px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.bg-image-tests{
+    background-size: cover;
+    height: 15em;
+    width:20em;
+    border-radius: 10px;
+} 
+.active{
+    background-color: transparent ;
+}
+/****************************************************************************************/
+
+/*********************************************************************Historique de mes équipes***********************************************************************/
+
+.content-info {
+    background: #f9f9f9;
+    padding: 40px 0;
+    background-size: cover !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+    padding-bottom: 100px
+}
+
+table {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #dedede
+}
+
+table thead tr th {
+    padding: 20px;
+    border: 1px solid #dedede;
+    color: #000
+}
+
+table.table-striped tbody tr:nth-of-type(odd) {
+    background: #f9f9f9
+}
+
+table.result-point tr td.number {
+    width: 100px;
+    position: relative
+}
+
+.text-left {
+    text-align: left !important
+}
+
+table tr td {
+    padding: 10px 20px;
+    border: 1px solid #dedede
+}
+
+table.result-point tr td .fa.fa-caret-up {
+    color: green
+}
+
+table.result-point tr td .fa {
+    font-size: 20px;
+    position: absolute;
+    right: 20px
+}
+
+table tr td {
+    padding: 10px 40px;
+    border: 1px solid #dedede
+}
+
+table tr td img {
+    max-width: 32px;
+    float: left;
+    margin-right: 11px;
+    margin-top: 1px;
+    border: 1px solid #dedede
+}
+
+/* #test_img{
+    padding:2.5rem 0;
+    margin:0 0 0 3rem;
+} */

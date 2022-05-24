@@ -1,0 +1,40 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title 'Bienvenue sur le dashboard d\'Easy Sport Tests' %}
+
+{% block main %}
+   
+   <div clas="container">
+       <h1 class="mt-5"> Statistiques</h1>
+<div class="row mt-4">
+  
+
+        <div class="col-6"> 
+            <div class="card mb-5 bg-dark text-center"> 
+                <h5 class="card-title  mt-3 text-secondary"> Utilisateurs Inscrits </h5>
+                <div class="card-body bg-light"> 
+                  
+                  
+                   <p class ="display-4">Il y a {{ numberOfUsers }} utilisateurs inscrits sur le site</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6"> 
+            <div class="card mb-5 bg-info text-center"> 
+                <h5 class="card-title  mt-3 text-secondary">Tests effectués </h5>
+                <div class="card-body bg-light"> 
+                  
+                  
+                   <p class ="display-4"> {{ numberOfResults }} Tests ont été passés par les utilisateurs </p>
+                </div>
+            </div>
+        </div>
+</div>
+
+   
+   </div>
+
+
+{% endblock %}

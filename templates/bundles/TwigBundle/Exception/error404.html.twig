@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <div class="container-fluid bg-opacity">
+    <div class="row">
+        <div class="col-lg-6  text-center">
+            <h1 class="mt-5">Carton Rouge !!</h1> <h2 class="my-5">Erreur 404</h2>
+            <h4>
+              Nous ne trouvons pas la page recherchée. Vérifiez votre url ou <a href = "{{ path('homepage') }}"><span>retournez à l'accueil.<span></a>
+            </h4>
+        </div>
+        <div class="col-lg-6">
+           <img width="100%" src = "../assets/img/carton_rouge404.jpg">
+        </div>
+    </div>
+  </div>
+
+        
+  
+{% endblock %}

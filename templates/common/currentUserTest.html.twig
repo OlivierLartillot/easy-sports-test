@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('test') }}
+{% endblock %}
+<div class="container">
+    <h1 class="title-page name_test"></h1><span id="unit_test"></span>
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <p id="description_test"></p>
+            {{ form_start(form) }}
+            {{ form_row(form.test) }}    
+            {{ form_row(form.result) }} 
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }} 
+        </div>
+        <div class="p-2 col-12 col-md-6 ">
+            <img class="d-none" width="100%" id="test_img" alt="no image">
+            <video class="d-none" id="test_video" width="100%" alt="no vidéo" controls>
+                <source  type="video/mp4">
+            </video>
+        </div>
+    </div>
+          
+</div>
+
+    <a href="{{ path('user_home', {slug : app.user.slug}) }}">retour à l'accueil</a>
+
+
+
+
+{% endblock %}

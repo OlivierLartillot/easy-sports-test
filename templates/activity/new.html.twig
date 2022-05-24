@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Activity{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Ajouter à ma liste</h1>
+
+        {{ include('activity/_form.html.twig') }}
+
+            <a href="{{ path('app_activity_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

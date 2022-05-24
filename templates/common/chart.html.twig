@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Charts{% endblock %}
+
+{% block body %}
+{% set user = user[0] %}
+<div class ="container"> 
+        <h1 class="text-center mt-5 mb-5">{{ test.name }}</h1>
+               
+{# {{ render_chart(chart) }} #}
+{# You can pass HTML attributes as a second argument to add them on the <canvas> tag #}
+<div class="row">
+
+    <div class="col-12 col-md-6">
+        <h2 class="title-page mb-5">{{user.firstname}} {{user.lastname}}</h2> 
+        <h3>Officiels</h3>
+        <p>Ce graphique montre l'évolution des résultats officiels de tes tests</p>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ render_chart(chart, {'class': 'my-chart'}) }} 
+    </div>
+</div>
+
+<div class="row mt-2">
+
+    <div class="mt-5 col-12 col-md-6">
+    <h3 class="mt-5">Entrainement</h3>
+    <p>Ce graphique montre l'évolution des résultats d'entrainements au test</p>
+    </div>
+    <div class="col-12 col-md-6">
+   
+    {{ render_chart(chart2, {'class': 'my-chart'}) }} 
+    </div>
+
+
+</div>         
+<div class="row mt-5">
+    <h1 class="mb-4">Historique</h1>
+
+    <div class="col-12">
+        <table class="table table-light table-hover text-center">
+            <thead>
+                <tr>
+                <th scope="col">Résultats</th>
+                <th scope="col">Date</th>
+                <th scope="col">Off./Perso.</th>
+        
+                </tr>
+            </thead>
+
+            {% for result in myresults | sort ((b,a) => a.doneAt <=> b.doneAt)%}
+
+                <tr>
+                    <td>{{ result.result }}</td> 
+                    <td>{{ result.doneAt | date('d-m-Y') }}</td> 
+                    <td>{{ result.status == 1 ? "Officiel" : "Personnel" }}</td> 
+                
+                </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+ {#    <p>{{ result.result }}  {{ result.doneAt | date('d-m-Y')}}  {{ result.status == 1 ? "Officiel" : "Entrainement" }}</p> #}
+
+
+
+{% endblock %}

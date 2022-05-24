@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des tests{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row mt-5">
+        <h1 class="mb-4">Liste des tests disponibles</h1>
+
+        <div class="col-12 mt-4">
+            <table class="table table-light table-hover text-center">
+                <thead>
+                    <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col" class="d-none d-md-table-cell">Tags</th>
+                    <th scope="col">lien</th>
+            
+                    </tr>
+                </thead>
+
+                {% for test in listTests | sort ((a,b) => a.name <=> b.name)%}
+
+                    <tr>
+                        <td>{{ test.name }}</td> 
+
+                        <td class="d-none d-md-table-cell" >
+                            {% for tag in test.tags %}
+                                {% if tag.isPrimary %}
+                                    {% if tag.name == 'Physique' %}
+                                        <span class="badge bg-danger" >  {{tag}}  </span>
+                                    {% else %}
+                                            <span class="badge bg-primary" >  {{tag}}  </span>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+
+                            {% for tag in test.tags %}
+                                {% if tag.isPrimary == false%}
+                                    <span class="badge bg-secondary" >  {{tag}}  </span>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+
+
+                        <td><a href="{{path('detail_test', {slug: test.slug}) }}" class="btn-1 p-1 btntest" role="button"> Voir + </a></td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+       
+
+
+{% endblock %}

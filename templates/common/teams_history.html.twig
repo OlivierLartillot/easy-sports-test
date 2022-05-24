@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommonController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="title-page">Derniers résultats de mes joueurs</h2>
+        
+        <section class="content-info">
+    <div class="container paddings-mini">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-striped table-responsive table-hover result-point">
+                    <thead class="point-table-head">
+                        <tr>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Equipe</th>
+                            <th colspan="6" class="text-center">Derniers résultats</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    
+                    {% for team in teams %}
+                    {% for user in team %}
+                        <tr>
+                            <td class="text-left number">{{user[0].firstname}} <i class="fa fa-caret-up" aria-hidden="true"></i></td>
+                            <td class="text-left"><span>{{user.name}}</span> </td>
+                            {% for result in user[0].results [-6:] %}
+                            <td>{{result.test.name}} : {{result.result}} ({{result.test.unit}})</td>
+                            {% endfor %}
+                            {# <td>26</td>
+                            <td>9</td>
+                            <td>3</td>
+                            <td>73</td>
+                            <td>32</td>
+                            <td>+41</td>
+                            <td>87</td> #}
+                        
+                        
+                        </tr>
+                        {% endfor %}
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+    
+         
+       
+
+{% endblock %}

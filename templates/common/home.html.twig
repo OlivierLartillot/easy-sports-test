@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlayerController!{% endblock %}
+
+{% block body %}
+{% if app.user.id != user.id %}
+<div class ="container"> 
+          
+            <div class="row">
+              <h2 class="title-page mb-5">Welcome sur le profil de {{user.firstname}}</h2>
+
+                <div class="col-xs-12 col-lg-4 order-lg-last">
+                    <div class="card mb-3 bg-white" >
+                        <div class="row no-gutters">
+                            <div class="text-center col-sm-5  col-lg-4" >
+                                <img src="{{asset('uploads/images/users/' ~ user.picture)}}" alt="avatar" class="p-2 rounded-circle" width="130" height="130">
+                            </div>
+                            <div class="text-center col-sm-7 col-lg-8">
+                                 <div class="card-body text-dark">
+                                    <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
+                                    <p class="card-text">{{user.club}}</p>
+                                    {% for activity in user.activities%}
+                                    <p class="card-text">{{activity.team.name}}-{{activity.team.ageCategory}}, {% if activity.role == 1 %}Entraineur {% else %} Joueur {% endif %} </p>
+                                    {% endfor %}
+                                    {# <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-5 col-xs-12 col-lg-3 buttoncard order-md-2 order-lg-2">                      
+                  <a href="{{ path('test_myself',{id : user.id})}}" class="btn-1 mt-5 btntest" role="button"><span>Testez votre joueur</span></a>              
+                </div>                
+
+                <div class="card mb-5 col-lg-3" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{{ path('history', {slug: user.slug}) }}">Voir ses Résultats</a></h5>
+                    <ul class="list-group list-group-flush">
+                    {% for result in user.results [-3:] %}
+                      <li class="list-group-item">{{result.test.name}} : {{result.result}} {{result.test.unit}} 
+                        <div>
+                          {% if result.status == 1 %} 
+                            <span class="badge bg-success">Officiel</span> 
+                          {% else %} 
+                            <span class="badge bg-danger">Personnel</span> 
+                          {% endif %}
+                        </div>
+                      </li>
+                    {% endfor %}
+                      
+                    </ul>
+                  </div>
+                </div>
+                
+            </div>
+            <!-- END ROW -->
+
+            <div class="row row2">
+
+                <!-- <div class="col-xs-12 col-lg-12 ">  -->                 
+                    
+                    <div class="card mb-5 col-xs-12 col-lg-4" style="width: 18rem;">
+                      <div class="card-body ">
+                        <h5 class="card-title"><a href="{{path('coach_teams', {id : user.id})}}">{% if 'ROLE_COACH' in user.roles %} Voir ses équipes {% else %} Voir son équipe {% endif %} </a></h5>
+                        <ul class="list-group list-group-flush">
+                        {% for activity in user.activities %}
+                        <li class="list-group-item">{{activity.team.name}}, [{{activity.team.ageCategory}}]</li>
+                          <li class="list-group-item">Role : {% if activity.role == 1 %}Entraineur {% else %} Joueur {% endif %}</li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>                 
+                    
+                <!-- </div>   -->           
+            </div>
+            
+
+        </div>
+{% else %}
+<div class ="container"> 
+          
+            
+              <h2 class="title-page mb-5">Welcome {{user.firstname}}</h2>
+              
+            <div class="row">
+                <div class="col-lg-4 order-lg-last">
+                    <div class="card mb-3 bg-white" >
+                        <div class="row no-gutters">
+                            <div class="text-center col-sm-5  col-lg-4 " >
+                                <img src="{{asset('uploads/images/users/' ~ user.picture)}}" alt="avatar" class="p-2 rounded-circle" width="130" height="130" >
+                            </div>
+                            <div class="text-center col-sm-7 col-lg-8">
+                                 <div class="card-body text-dark">
+                                    <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
+                                    <p class="card-text">{{user.club}}</p>
+                                    {% for activity in user.activities%}
+                                    <p class="card-text">{{activity.team.name}}-{{activity.team.ageCategory}}, {% if activity.role == 1 %}Entraineur {% else %} Joueur {% endif %} </p>
+                                    {% endfor %}
+                                    {# <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-5 col-lg-3 buttoncard order-md-2 order-lg-2">                   
+                  <a href="{{ path('test_myself',{id : user.id})}}" class="btn-1 mt-5 btntest" role="button"><span>Testez-vous</span></a>               
+                 
+                 {% if ('ROLE_COACH' in user.roles) %} <a href="{{ path('tests',{id : user.id})}}" class="btn-1 mt-5 btntest" role="button"><span>Testez votre équipe</span></a> {% endif %}
+                
+                </div>
+
+                <div class="card mb-5 col-lg-3 " >
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{{ path('history', {slug: user.slug}) }}">Mes Résultats</a></h5>
+                    <ul class="list-group list-group-flush">
+                    {% for result in user.results [-3:] %}
+                      <li class="list-group-item">{{result.test.name}} : {{result.result}} {{result.test.unit}} <div>{% if result.status == 1 %} <span class="badge bg-success">Officiel</span> {% else %} <span class="badge bg-danger">Personnel</span> {% endif %}</div></li>
+                      {% endfor %}
+                      
+                    </ul>
+                  </div>
+                </div>
+                
+            </div>
+            <!-- END ROW -->
+
+            <div class="row row2">
+
+                <!-- <div class="col-xs-12 col-lg-12 ">  -->                 
+                    
+                    <div class="card mb-5 col-xs-12 col-lg-3" {# style="width: 18rem;" #}>
+                      <div class="card-body ">
+                        <h5 class="card-title"><a href="{{path('coach_teams', {id : user.id})}}">{% if 'ROLE_COACH' in user.roles %} Mes équipes {% else %} Mon équipe {% endif %} </a></h5>
+                        <ul class="list-group list-group-flush">
+                        {% for activity in user.activities %}
+                        <li class="list-group-item">{{activity.team.name}}, [{{activity.team.ageCategory}}]</li>
+                          <li class="list-group-item">Role : {% if activity.role == 1 %}Entraineur {% else %} Joueur {% endif %}</li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+
+                               
+                     
+                    <div class="card mb-5 col-xs-12 col-lg-3 profilcard" {# style="width: 18rem;" #}>
+                      <div class="card-body">
+                        <h5 class="card-title">Mon Profil</h5>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><a class="nav-link link-dark" href="{{path('profilpage', {slug : app.user.slug})}}">Modifier mon profil</a></li>
+                          <li class="list-group-item"><a class="nav-link link-dark" href="{{path('editpassword', {slug : app.user.slug})}}">Modifier mon mot de passe</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                <!-- </div>   -->           
+            </div>
+            
+
+        </div>
+        {% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du Profil utilisateur{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+    <h3>Modifiez votre profil</h3>
+
+  <div class="d-flex flex-wrap">
+        <div class="col-md-3 m-3">
+            {{ form_row(form.firstname) }} 
+        </div>
+
+        <div class="col-md-3 m-3">
+          {{ form_row(form.lastname) }}
+        </div>
+
+        <div class="col-md-3 mx-3 my-2">
+          {{ form_row(form.birthdate) }}
+        </div>
+
+        <div class=" col-md-1 mx-3 my-2">        
+          {{ form_row(form.roles) }}
+        </div>
+  
+        <div class="col-md-3 mx-3">
+            {{ form_row(form.email) }} 
+        </div>
+
+        <div class=" col-md-3 mx-3">        
+          {{ form_row(form.picture) }}
+        </div>
+        
+        <div class=" col-md-3 mx-3">        
+          {{ form_row(form.city) }}
+        </div>
+        <div class=" col-md-3 mx-3">        
+          {{ form_row(form.club) }}
+        </div>
+  </div>
+  <div class=" text-center">
+        <div class="card mx-3  col-xs-12 col-lg-4 buttoncard" style="width: 14rem;">                      
+          <a href="{{ path('editpassword',{slug : app.user.slug})}}" class="mt-5 btnpassword" role="button"><span>Modifier votre Mot de Passe</span></a>               
+        </div>
+  </div>
+    
+    <div class = "text-center mx-3">
+      <button class="btn btn-success btn-lg my-5 " >{{ button_label|default('Enregistrer') }}</button>
+    </div>
+    
+{{ form_end(form) }}
+    <a href="{{path('user_home', {slug : app.user.slug})}}">retour à l'accueil</a>
+{% endblock %}

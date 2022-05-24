@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Team{% endblock %}
+
+{% block body %}
+ 
+
+    <div class="container">   
+    <h1 class="my-5">Entrez les infos de votre équipe</h1>
+        {{ include('team/_form.html.twig') }}
+    </div>
+
+    <a href="{{ path('app_team_index') }}">back to list</a>
+{% endblock %}

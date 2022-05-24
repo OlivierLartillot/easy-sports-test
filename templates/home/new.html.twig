@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel utilisateur{% endblock %}
+
+{% block body %}
+<div class = "bg-opacity">
+    <h1>Bienvenue</h1>
+
+    {{ include('home/_form.html.twig') }}
+
+    <a href="{{ path('homepage') }}">retour à l'accueil</a>
+</div>
+{% endblock %}

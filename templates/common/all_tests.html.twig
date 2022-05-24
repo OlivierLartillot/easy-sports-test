@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommonController!{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+
+            <div class="row text-center mt-5">
+                <h2>Quel type de test voulez-vous faire ?</h2>
+            </div>
+
+            <div class="row row-vignette my-4 d-flex justify-content-evenly ">
+               
+                <!-- vignette 1 -->
+                <div class="col-12 col-md-6 my-3" >
+                    <div class="card vignette-card-dimension resultblock mx-auto">
+                        <a href="{{path('test_technique')}}">
+                        <div class="vignette-tests  bg-image-tests" style="background-image: url('./assets/img/pexels-pixabay-46798.jpg')">                          
+                            <div class="card-body bg-transparent">
+                                <h5 class="card-title image-tests-common image-tests-header">Technique</h5>
+                                <h6 class="image-tests-common image-tests-footer ">5 tests disponibles</h6>  
+                            </div>    
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- vignette 2 -->
+                <div class="col-12 col-md-6 my-3" >
+                    <div class="card vignette-card-dimension resultblock mx-auto">
+                        <a href="{{path('test_physique')}}">
+                            <div class="vignette-tests bg-image-tests" style="background-image: url('./assets/img/pexels-ruslan-alekso-2128220.jpg')">
+                            
+                                <div class="card-body" >
+                                    <h5 class="card-title image-tests-common image-tests-header">Physique</h5>
+                                    <h6 class="image-tests-common image-tests-footer ">12 tests disponibles</h6>  
+                                </div>
+                            </div>
+                        </a>
+                    
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+<div>
+
+</div>
+       
+
+
+{% endblock %}

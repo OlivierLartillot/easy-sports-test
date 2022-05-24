@@ -1,0 +1,26 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+        <div class="container-fluid bg-opacity">
+
+          <h1 class="mt-5 mb-5">Easy-Sports-Tests</h1>
+          	<h4 class="mt-5 mb-3">
+
+              Entrainez vous, testez vous.
+         	 	</h4> 
+          
+         	 	<p class="mt-3 mb-3 p-5">
+						Easy-Sports-Tests vous propose des exercices d'entraînements à réaliser pour performer. Un moyen simple et efficace en tant que sportif pour connaitre son niveau et progresser dans son sport. Un outil adapté pour les entraineurs qui veulent tester leurs joueurs et faire progresser leurs équipes.
+					</p>
+        
+ 					<a href="{{ path('homesubscription') }}" role="button" class="btn btn-primary mt-5 px-5">Inscrivez-vous maintenant</a>        
+
+        </div>
+    
+
+
+{% endblock %}

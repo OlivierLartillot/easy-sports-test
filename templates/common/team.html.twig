@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My teams{% endblock %}
+
+{% block body %}
+<div class="container">
+    
+    <h2 class="title_page">Mes équipes</h2>
+
+    {# Si l'entraineur n'a pas encore créé d'équipe il doit le faire #}
+    {% if teamPlayersListByTeam[0] is not defined %}
+        <div class="container">
+            <div class="row text-center">
+
+                {% if "ROLE_COACH" in user.roles %}
+                <div class="col-12 col-sm-6"> 
+                    <h4 class="mb-4">Bienvenue dans la section Equipes</h4>
+                    <p>Pour profiter pleinement de cette section veuillez créer votre première équipe</p>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <a href="{{ path('app_team_new')}}" class="btn-1 mt-5 btntest" role="button">Ajouter une équipe</a>
+                </div>
+
+                {% else %}
+                    <div class="col-12 col-sm-6"> 
+                    <h4 class="mb-4">Bienvenue dans la section Equipes</h4>
+                    <p>Désolé, aucun entraîneur ne t'a ajouté à son équipe pour le moment.</p>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    {# Sinon l'entraineur à au moins créé une équipe #} 
+    {#ou le joueur à une équipe !!! #}
+    {% else %}
+        {% if "ROLE_COACH" in user.roles %}
+            <div class="d-flex flex-row-reverse">
+
+                <a href="{{ path('app_team_new')}}" class="btn-1 mt-5 btntest" role="button"><span class="px-2">Ajouter une équipe</span></a>
+            </div>
+        {% endif %}
+        {# On créé une variable d'incrément qui correspond à la position de l'équipe dans le tableau #}
+        {# exemples: teamPlayersListByTeam[0] , teamPlayersListByTeam[1] #}
+        {% set numberOfTheTeam = 0 %}
+
+        {# myTeams correspond aux lignes du coach dans la table activity #}
+        {% for team in myTeams %}
+
+                <div class="container_team">
+
+                    {# on ne garde que les lignes pour lesquelles l'entraîneur est coach et non joueur #}
+                    {# {% if team.role == 1  %} #}
+                    {% if team.role == 1 %}
+
+                        {# S'il n'y a pas que l'entraineur dans cette équipe alors on peut faire passer un test #}
+                        {% if teamPlayersListByTeam[numberOfTheTeam] | length > 1 %}
+                        
+                            <a href="" class="btn-1 mx-2 mt-3 btntest" role="button"><span class="px-2">Tester cette Equipe</span></a>
+                            <a href="{{ asset('coach/activity/new/'~team.team.id) }}" class="btn-1 mx-2 mt-3 btntest" role="button"><span class="px-2">Ajouter un joueur</span></a>
+                             
+                        {# Sinon il faut ajouter des joueurs #}      
+                        {% else %}
+                                <a href="{{ asset('coach/activity/new/'~team.team.id) }}" type="button" class="btn btn-success">Ajouter des joueurs avant de pouvoir faire un test</a>
+                        {% endif %}
+                    {% endif %}
+
+                    {# team dans la table activity fait le lien avec les tables team et user (team.name ou encore team.user) #}
+                    <div class="team_name">
+                    <h3>  {{ team.team.name }} - {{ team.team.ageCategory }}  </h3>
+                    <h5>{{ team.user.firstname }} {{ team.user.lastname }}</h5>
+                    </div>
+                        {# teamPlayersListByTeam[numberOfTheTeam] représente les tableaux qui contiennent les joueurs  #}
+                        {% for player in teamPlayersListByTeam[numberOfTheTeam] %}
+
+                            {# Affichage des joueurs de/des l'équipe(s) #}
+                            {# on ne veut oas récupérer l'entraineur mais seulement les joueurs (role == 0) #}
+                            {% if player.role == 0 %}
+                            
+                                <div class="player_card">
+
+                                    <div class="card" style="width: 10rem;">
+                                        {# si l'user n'a pas de photo affiche la photo de base #}
+                                        {% if player.user.picture == NULL %}
+                                            <img src="{{asset('assets/img/pexels-tima-miroshnichenko-6078303.jpg')}}" class="card-img-top player_card_image" alt="photo générique du joueur">
+                                        {# sinon affiche sa photo #}
+                                        {% else %}
+                                            <img  src="{{asset('uploads/images/users/' ~player.user.picture)}}" class="card-img-top player_card_image" alt="{{ player.user.firstname}} {{ player.user.lastname}} ">
+                                        {% endif %}
+
+                                        <div class="card-body">
+                                            <p class="card-text text-center">
+                                                <a href="{{path('user_home', {slug : player.user.slug})}}">{{ player.user.firstname}}</a>
+                                            </p>
+
+                                            {# Tu ne peux supprimer un joueur que si tu es entraineur de cette équipe #}
+                                            {% if team.role == 1 %}
+                                            <div class="text-center">
+                                                {# Formulaire "delete a player" #}
+                                                <form method="post" action="{{ path('app_team_delete_player_from_team', {'id': player.id}) }}">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ player.id) }}">
+
+                                                    {# Déclenchement de la modale au clic sur la poubelle avec id = player.id pour lier a la bonne fenêtre #}
+                                                    <button type="button" class="btn {# btn-danger #}" data-bs-toggle="modal" data-bs-target="#deletePlayerModal{{~player.id}}">
+                                                        <img src="{{ asset('assets/icones/trash_bin_icon-icons.com_67981.svg') }}" style="width:1.7rem" alt="image de poubelle">
+                                                    </button>
+
+                                                    {# Ouverture de la modale liée grace a  player.id #}
+                                                    <div class="modal fade" id="deletePlayerModal{{~player.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Suppression de joueur</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Es tu sûre de vouloir supprimer {{ player.user.firstname }} {{ player.user.lastname }} de cette équipe ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fermer</button>
+                                                                <button type="submit" class="btn btn-danger">Oui</button>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                             
+                                                </form>                     
+                                            </div>
+                                            {% endif %} 
+                                          
+                                        </div>
+                                        {# END CARD BODY #}
+                                    </div>
+                                    {# END CARD #}
+                                </div> 
+                                {# END PLAYER CARD #}                   
+                            {% endif %}
+
+                        {% endfor %}
+               
+                </div>
+                {# Incrémente uniquement si tu es dans la boucle entraineur == 1 #}
+                {% set numberOfTheTeam = numberOfTheTeam + 1 %} 
+        {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}
