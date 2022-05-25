@@ -37,16 +37,20 @@ class CoachController extends AbstractController
     }
 
      /**
-     * @Route("/teams", name="coach_teams")
+     * @Route("/teams", methods={"GET"}, name="coach_teams")
      */   
-    public function teams(UserRepository $userRepository, ActivityRepository $activityRepository, UserInterface $currentUser): Response
+    public function teams(UserRepository $userRepository, ActivityRepository $activityRepository, UserInterface $currentUser)
     {
         //je récupère l'id du user courant
         $id = $currentUser->getId(); 
-        $user = $userRepository->find($id);
+        $user = $userRepository->find($id); 
 
+
+
+      
        // je récupère toutes les équipes de l'utilisateur
         $myTeams = $user->getActivities();
+        
         /* J'exclus les équipes dont l'entraîneur n'est que joueur :
             - j'enregistre les id des équipes coach dans le tableau $teamsIdList 
             - si le role du coach dans cet équipe est 0 (joueur) 
@@ -62,9 +66,9 @@ class CoachController extends AbstractController
 
                 // enregistre l'id de l'équipe dans le tableau
                 $teamsIdList [] = $team->getTeam()->getId();
-            
-
+        
         } 
+
 
         /* Grace au tableau contenant les id des équipes du coach 
            Je vais créer un autre tableau $teamPlayersListByTeam qui va prendre en :
@@ -78,17 +82,19 @@ class CoachController extends AbstractController
             // récupère la liste des users de cette équipe
             $players = $activityRepository->findBy(['team' => $teamId]);
             // si le nombre de personne de cette équipe = 1 c'est qu'il n'y a que l'entraineur ...)
-            $countUsersNumber = count($players);
+            //$countUsersNumber = count($players);
 
                 $teamPlayersListByTeam [] = $players;    
         }
+       
+
 
         // récupère les équipes grace a la propriété de user 
 
         return $this->render('common/team.html.twig', [
             'myTeams' => $myTeams,
             'teamPlayersListByTeam' => $teamPlayersListByTeam,
-            'user'=> $user
+            /* 'user'=> $user */
         ]);
     }
 

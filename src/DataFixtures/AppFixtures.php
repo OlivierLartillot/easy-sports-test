@@ -24,7 +24,6 @@ class AppFixtures extends Fixture
             $tag->setName($value);
             $tagList [] = $tag;
             $manager->persist($tag);
-
         }
         $listTeam = [];
         $Teams = ['Manchester.Utd','Liverpool','Arsenal','OL','Manchester City','Real Madrid','F.C Barcelone'];
@@ -90,9 +89,6 @@ class AppFixtures extends Fixture
             $listUsersObject [] = $user;
             $manager->persist($user);
         }
-        
-        
-
         
         for($y = 1; $y<150;$y++){
             $result = new Result();

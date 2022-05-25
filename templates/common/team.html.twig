@@ -12,20 +12,21 @@
         <div class="container">
             <div class="row text-center">
 
-                {% if "ROLE_COACH" in user.roles %}
-                <div class="col-12 col-sm-6"> 
-                    <h4 class="mb-4">Bienvenue dans la section Equipes</h4>
-                    <p>Pour profiter pleinement de cette section veuillez créer votre première équipe</p>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <a href="{{ path('app_team_new')}}" class="btn-1 mt-5 btntest" role="button">Ajouter une équipe</a>
-                </div>
-
+                {# Si l'utilisateur est un entraineur #}
+                {% if "ROLE_COACH" in app.user.roles %}
+                    <div class="col-12 col-sm-6"> 
+                        <h4 class="mb-4">Bienvenue dans la section Equipes</h4>
+                        <p>Pour profiter pleinement de cette section veuillez créer votre première équipe</p>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <a href="{{ path('app_team_new')}}" class="btn-1 mt-5 btntest" role="button">Ajouter une équipe</a>
+                    </div>
+                {# si l'utilisateur est un joueur #}
                 {% else %}
                     <div class="col-12 col-sm-6"> 
-                    <h4 class="mb-4">Bienvenue dans la section Equipes</h4>
-                    <p>Désolé, aucun entraîneur ne t'a ajouté à son équipe pour le moment.</p>
-                </div>
+                        <h4 class="mb-4">Bienvenue dans la section Equipes</h4>
+                        <p>Désolé, aucun entraîneur ne t'a ajouté à son équipe pour le moment.</p>
+                    </div>
                 {% endif %}
 
             </div>
@@ -34,7 +35,7 @@
     {# Sinon l'entraineur à au moins créé une équipe #} 
     {#ou le joueur à une équipe !!! #}
     {% else %}
-        {% if "ROLE_COACH" in user.roles %}
+        {% if "ROLE_COACH" in app.user.roles %}
             <div class="d-flex flex-row-reverse">
 
                 <a href="{{ path('app_team_new')}}" class="btn-1 mt-5 btntest" role="button"><span class="px-2">Ajouter une équipe</span></a>
@@ -106,11 +107,11 @@
                                                     </button>
 
                                                     {# Ouverture de la modale liée grace a  player.id #}
-                                                    <div class="modal fade" id="deletePlayerModal{{~player.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="deletePlayerModal{{~player.id}}" tabindex="-1" aria-labelledby="deletePlayer" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Suppression de joueur</h5>
+                                                                <h5 class="modal-title" id="deletePlayer">Suppression de joueur</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">

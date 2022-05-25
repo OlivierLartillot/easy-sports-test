@@ -15,7 +15,7 @@ class UserListener
         $this->slugger = $slugger;
     }
 
-    public function updateSlug(User $user, $slugger)
+    public function updateSlug(User $user)
     {
         // chaine à slugger
         $userSlug = $user->getFirstname() . ' - '. $user->getLastname();

@@ -390,7 +390,8 @@ class CommonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // si je ne suis pas coach et que je suis pas le user courant 
-            // j'ai pas le droitd'envoyer un résultat pour un autre joueur
+            // j'ai pas le droit d'envoyer un résultat pour un autre joueur
+
             if ( (!in_array("ROLE_COACH",$userInterface->getRoles())) && ($userInterface->getId() != $id )) {
                 return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
             }
@@ -400,6 +401,7 @@ class CommonController extends AbstractController
             $post = $request->get('result_current_user');
             $test = $post['test'];
             $result->setUser($user);
+            
             if(in_array("ROLE_COACH",$userInterface->getRoles()) && $userInterface->getId()!= $user->getId()){
                 $result->setStatus(1);
             }else{

@@ -50,7 +50,7 @@
                                 </li>
                                 {% endif %} #}
                                 <li class="nav-item">
-                                    <a class="nav-link {% if route_name == 'coach_teams' %} active {% endif %} text-light" href="{{path('coach_teams', {id : app.user.id})}}">Equipe</a>
+                                    <a class="nav-link {% if route_name == 'coach_teams' %} active {% endif %} text-light" href="{{path('coach_teams')}}">Equipe</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {% if route_name == 'list_tests' %} active {% endif %} text-light" href="{{path('list_tests')}}">Comprendre les tests</a>

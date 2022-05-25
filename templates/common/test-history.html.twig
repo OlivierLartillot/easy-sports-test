@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommonController!{% endblock %}
+{% block title %}Historique de test{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -23,7 +23,7 @@
        
             <div class="row">
              {% for result in user.results | sort((a, b) => b.doneAt <=> a.doneAt)%}
-                <div class="col-md-4">
+                <div class="col-lg-4">
                 
                     <div class="card p-3 mb-2">
                         <div class="d-flex justify-content-between">

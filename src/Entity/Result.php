@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ResultRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ResultRepository::class)
@@ -31,6 +32,7 @@ class Result
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Positive(message="La valeur doit être positive")
      */
     private $result;
 
