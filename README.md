@@ -1,5 +1,7 @@
 # easy-sports-test
-End formation project 
+Projet de fin de Formation
+
+this project was created with Symfony and Twig
 
 This project carried out by Olivier Lartillot, Maxime LeGoff and Stéphane Hucher. 
 
