@@ -1,12 +1,8 @@
 # easy-sports-test
+
 Projet de fin de Formation
 
-this project was created with Symfony and Twig
+Ce projet fut créé en formation par l'équipe: 
+Olivier Lartillot, Maxime LeGoff et Stéphane Hucher. 
 
-This project carried out by Olivier Lartillot, Maxime LeGoff and Stéphane Hucher. 
-
-It's a
-- sports project
-- training project
-
-Coaches and players can save their test results.
+Je l'ai repris et amélioré dans un repo faisant parti de mes repos privés.
